@@ -85,11 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteCandidato = async (id) => {
         if (confirm('Tem certeza que deseja excluir este candidato?')) {
             try {
+                // Remove visualmente primeiro para feedback instantâneo
+                const item = document.querySelector(`button[onclick="deleteCandidato(${id})"]`).closest('.list-item');
+                if (item) item.style.opacity = '0.5';
+
                 await api.delete(`/candidatos/${id}`);
                 showAlert('Candidato excluído com sucesso!', 'success');
-                loadCandidatos();
+                
+                // Recarrega a lista para garantir sincronia
+                await loadCandidatos();
             } catch (error) {
                 showAlert(error.message, 'error');
+                if (item) item.style.opacity = '1';
             }
         }
     };
