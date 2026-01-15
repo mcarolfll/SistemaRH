@@ -69,7 +69,13 @@ const api = {
                 method: 'DELETE'
             });
             const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Erro ao excluir');
+            if (!response.ok) {
+                // Se já não existir no servidor (404), tratamos como "já excluído"
+                if (response.status === 404) {
+                    return result;
+                }
+                throw new Error(result.error || 'Erro ao excluir');
+            }
             return result;
         } catch (error) {
             console.error('API Error:', error);
