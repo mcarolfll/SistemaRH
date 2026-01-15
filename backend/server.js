@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 5002;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Logger Middleware
@@ -32,7 +36,11 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Algo deu errado no servidor!' });
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Iniciar servidor apenas se executado diretamente
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando na porta ${PORT}`);
+    });
+}
+
+module.exports = app;

@@ -24,6 +24,7 @@ const api = {
 
     async post(endpoint, data) {
         try {
+            console.log(`[POST] ${API_URL}${endpoint}`, data);
             const response = await fetch(`${API_URL}${endpoint}`, {
                 method: 'POST',
                 headers: {
@@ -32,10 +33,14 @@ const api = {
                 body: JSON.stringify(data)
             });
             const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Erro ao salvar');
+            if (!response.ok) throw new Error(result.error || 'Erro ao salvar: ' + response.statusText);
             return result;
         } catch (error) {
             console.error('API Error:', error);
+            // Se for erro de rede (fetch falhou)
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                throw new Error('Não foi possível conectar ao servidor. Verifique se a janela preta (backend) está aberta.');
+            }
             throw error;
         }
     },
