@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Candidatos - Sistema RH</title>
+    <link rel="icon" href="recursos-humanos.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="nav-menu">
+                <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+                <a href="candidatos.html" class="nav-btn active"><i class="fas fa-users"></i> Candidatos</a>
+                <a href="empresas.html" class="nav-btn"><i class="fas fa-building"></i> Empresas</a>
+            </div>
+
+            <div class="card-header">
+                <h2>Candidatos</h2>
+                <p>Cadastre e gerencie os candidatos</p>
+            </div>
+
+            <div id="alertBox" class="alert"></div>
+
+            <form id="candidatoForm">
+                <input type="hidden" id="candidatoId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" required placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required placeholder="Ex: joao@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="Ex: (11) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="cargo">Cargo Desejado</label>
+                        <input type="text" id="cargo" required placeholder="Ex: Desenvolvedor Frontend">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                    <i class="fas fa-plus"></i> Cadastrar Candidato
+                </button>
+            </form>
+
+            <div class="list-container" id="listaCandidatos">
+                <!-- Lista de candidatos será carregada aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/candidatos.js"></script>
+</body>
+</html>

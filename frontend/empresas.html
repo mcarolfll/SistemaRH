@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Empresas - Sistema RH</title>
+    <link rel="icon" href="recursos-humanos.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="nav-menu">
+                <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+                <a href="candidatos.html" class="nav-btn"><i class="fas fa-users"></i> Candidatos</a>
+                <a href="empresas.html" class="nav-btn active"><i class="fas fa-building"></i> Empresas</a>
+            </div>
+
+            <div class="card-header">
+                <h2>Empresas</h2>
+                <p>Cadastre e gerencie as empresas parceiras</p>
+            </div>
+
+            <div id="alertBox" class="alert"></div>
+
+            <form id="empresaForm">
+                <input type="hidden" id="empresaId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome da Empresa</label>
+                        <input type="text" id="nome" required placeholder="Ex: Tech Solutions">
+                    </div>
+                    <div class="form-group">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" id="cnpj" required placeholder="Ex: 00.000.000/0001-00">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail Corporativo</label>
+                        <input type="email" id="email" required placeholder="Ex: contato@techsolutions.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="Ex: (11) 3333-3333">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                    <i class="fas fa-plus"></i> Cadastrar Empresa
+                </button>
+            </form>
+
+            <div class="list-container" id="listaEmpresas">
+                <!-- Lista de empresas será carregada aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/empresas.js"></script>
+</body>
+</html>
